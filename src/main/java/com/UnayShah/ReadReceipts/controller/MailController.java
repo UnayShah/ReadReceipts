@@ -50,4 +50,10 @@ public class MailController {
 	public ResponseEntity<Boolean> deleteId(@PathVariable String id) {
 		return new ResponseEntity<>(mailService.deleteId(id), HttpStatus.ACCEPTED);
 	}
+
+	@GetMapping("deleteAll")
+	public ResponseEntity<Void> deleteAll() {
+		mailService.deleteAll();
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
 }

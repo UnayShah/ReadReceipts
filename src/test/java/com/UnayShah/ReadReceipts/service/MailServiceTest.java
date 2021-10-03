@@ -32,7 +32,8 @@ public class MailServiceTest {
 	@Order(1)
 	@Test
 	public void generateId() {
-		mailId = mailService.generateId();
+		mailId = mailService.generateId().replace("<img src=\"https://read-receipts-app.herokuapp.com/readId/", "").replace("\" style=\"display:none\"}>", "");
+		assertNotNull(mailId);
 	}
 
 	@Order(2)

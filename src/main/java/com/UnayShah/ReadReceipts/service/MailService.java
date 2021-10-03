@@ -14,14 +14,15 @@ public class MailService {
 
 	@Autowired
 	MailRepository mailRepository;
-	
-	public List<Mail> getAll(){
+
+	public List<Mail> getAll() {
 		return mailRepository.findAll();
 	}
 
 	public String generateId() {
 		Mail mail = mailRepository.save(new Mail());
-		return mail.getId();
+		return "<img src=\"https://read-receipts-app.herokuapp.com/readId/" + mail.getId()
+				+ "\" style=\"display:none\"}>";
 	}
 
 	public Boolean activateId(String id) {
@@ -57,5 +58,9 @@ public class MailService {
 			return true;
 		}
 		return false;
+	}
+
+	public void deleteAll() {
+		mailRepository.deleteAll();
 	}
 }
