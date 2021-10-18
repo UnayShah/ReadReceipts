@@ -37,7 +37,6 @@ public class MailController {
 	@GetMapping("readId/{id}")
 	public ResponseEntity<Void> readId(@PathVariable String id) {
 		mailService.readId(id);
-		;
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 

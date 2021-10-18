@@ -65,4 +65,19 @@ public class MailTest {
 		assertEquals(MailStatus.READ, mail.getMailStatus());
 		assertFalse(mail.activateMailStatus());
 	}
+
+	@Order(6)
+	@Test
+	public void accessTimesTest() {
+		mail = new Mail();
+		assertNotNull(mail.getId());
+		assertEquals(MailStatus.INACTIVE, mail.getMailStatus());
+		assertFalse(mail.changeMailStatusRead());
+		assertTrue(mail.activateMailStatus());
+		assertEquals(MailStatus.UNREAD, mail.getMailStatus());
+		assertTrue(mail.changeMailStatusRead());
+		assertEquals(mail.getAccessTimes().size(), 1);
+		assertTrue(mail.changeMailStatusRead());
+		assertEquals(mail.getAccessTimes().size(), 2);
+	}
 }
