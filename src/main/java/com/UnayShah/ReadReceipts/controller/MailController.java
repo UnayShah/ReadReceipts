@@ -1,5 +1,6 @@
 package com.UnayShah.ReadReceipts.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,10 @@ public class MailController {
 	@GetMapping("checkMailStatus/{id}")
 	public ResponseEntity<MailStatus> readStatus(@PathVariable String id) {
 		return new ResponseEntity<>(mailService.checkMailStatus(id), HttpStatus.ACCEPTED);
+	}
+	@GetMapping("checkMailAccessTimes/{id}")
+	public ResponseEntity<List<Date>> accessTimes(@PathVariable String id) {
+		return new ResponseEntity<>(mailService.checkMailAccessTimes(id), HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("deleteId/{id}")

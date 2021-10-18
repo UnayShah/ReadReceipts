@@ -60,8 +60,15 @@ public class MailServiceTest {
 		mailService.readId(mailId);
 		assertEquals(MailStatus.READ, mailService.checkMailStatus(mailId));
 	}
-
 	@Order(5)
+	@Test
+	public void mailAccessTimesTest() {
+		assertNotNull(mailService.checkMailStatus(mailId));
+		mailService.readId(mailId);
+		assertEquals(2, mailService.checkMailAccessTimes(mailId).size());
+	}
+
+	@Order(6)
 	@Test
 	public void deleteMailTest() {
 		assertEquals(MailStatus.READ, mailService.checkMailStatus(mailId));

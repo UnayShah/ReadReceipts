@@ -1,5 +1,6 @@
 package com.UnayShah.ReadReceipts.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,13 @@ public class MailService {
 	public MailStatus checkMailStatus(String id) {
 		if (mailRepository.existsById(id)) {
 			return mailRepository.findById(id).get().getMailStatus();
+		}
+		return null;
+	}
 
+	public List<Date> checkMailAccessTimes(String id) {
+		if (mailRepository.existsById(id)) {
+			return mailRepository.findById(id).get().getAccessTimes();
 		}
 		return null;
 	}
